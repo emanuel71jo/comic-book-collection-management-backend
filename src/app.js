@@ -1,10 +1,7 @@
 const express = require('express');
 const app = express();
+const router = require('./routes');
 
-app.use((req, res) => {
-    res.status(200).send({
-        mensage: "OK"
-    });
-});
+app.use(router);
 
 app.listen(3000);
