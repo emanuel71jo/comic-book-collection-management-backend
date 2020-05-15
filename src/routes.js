@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
-const ComicBookController = require('./controllers/ComicBookController');
+const ComicController = require('./controllers/ComicController');
 
-router.get("/comicbook", ComicBookController.index);
+router.get("/comicbook", ComicController.index);
 
 
 module.exports = router;
