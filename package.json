@@ -2,9 +2,9 @@
   "name": "comic-book-collection-management",
   "version": "1.0.0",
   "description": "",
-  "main": "src/app.js",
+  "main": "src/server.js",
   "scripts": {
-    "start": "nodemon"
+    "start": "nodemon src/server.js"
   },
   "keywords": [],
   "author": "",
