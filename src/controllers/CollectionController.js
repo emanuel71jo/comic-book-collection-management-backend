@@ -21,14 +21,23 @@ module.exports = {
         }
 
     },
-    async delete ( req, res ) {
-        return res.json({
-            message: "removed a colletion"
-        });
+    async delete ( req, res, next) {
+        
     },
-    async update ( req, res ) {
-        return res.json({
-            message: "updated a colletion"
-        })
+    async update ( req, res, next) {
+        try {
+
+            const { name, publishing_company} = req.body;
+            const { id } = req.params;
+
+            await knex('collection')
+                .update({ name, publishing_company})
+                .where({ id });
+
+            return res.send();
+
+        } catch (error) {
+            next(error);
+        }
     }
 }
