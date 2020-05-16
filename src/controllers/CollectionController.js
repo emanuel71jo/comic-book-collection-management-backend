@@ -7,7 +7,7 @@ module.exports = {
             const results = await knex("collection");
 
             return res.json(results);
-            
+
         } catch (error) {
             next(error);
         }
@@ -25,11 +25,18 @@ module.exports = {
         } catch (error) {
             next(error);
         }
-
     },
     async delete ( req, res, next) {
         try {
             
+            const { id } = req.params;
+
+            await knex('collection')
+                .where({ id })
+                .del();
+
+            return res.send();
+
         } catch (error) {
             next(error);
         }

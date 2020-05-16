@@ -22,7 +22,7 @@ router
     .put("/user", UserController.update)
 
     .get("/collection", CollectionController.index)
-    .delete("/collection", CollectionController.delete)
+    .delete("/collection/:id", CollectionController.delete)
     .put("/collection/:id", CollectionController.update)
     .post('/collection', CollectionController.create)
 
