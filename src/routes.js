@@ -3,7 +3,7 @@ const router = express.Router();
 
 const ComicController = require('./controllers/ComicController');
 const UserController = require('./controllers/UserController');
-const ColletionController = require('./controllers/ColletionController');
+const CollectionController = require('./controllers/CollectionController');
 const PersonController = require('./controllers/PersonController');
 const LoanController = require('./controllers/LoanController');
 const InvoiceController = require('./controllers/InvoiceController');
@@ -21,9 +21,10 @@ router
     .delete("/user", UserController.delete)
     .put("/user", UserController.update)
 
-    .get("/colletion", ColletionController.index)
-    .delete("/colletion", ColletionController.delete)
-    .put("/colletion", ColletionController.update)
+    .get("/collection", CollectionController.index)
+    .delete("/collection", CollectionController.delete)
+    .put("/collection", CollectionController.update)
+    .post('/collection', CollectionController.create)
 
     .get("/peaple", PersonController.index)
     .delete("/person", PersonController.delete)

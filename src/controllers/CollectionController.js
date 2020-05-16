@@ -1,9 +1,10 @@
+const knex = require('../database/connection');
 
 module.exports = {
     async index ( req, res ) {
-        return res.json({
-            message: "list all colletion"
-        })
+        const results = await knex("collection");
+
+        return res.json(results);
     },
     async delete ( req, res ) {
         return res.json({
