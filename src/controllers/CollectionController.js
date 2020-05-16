@@ -1,10 +1,16 @@
 const knex = require('../database/connection');
 
 module.exports = {
-    async index ( req, res ) {
-        const results = await knex("collection");
+    async index ( req, res, next ) {
+        try {
 
-        return res.json(results);
+            const results = await knex("collection");
+
+            return res.json(results);
+            
+        } catch (error) {
+            next(error);
+        }
     },
     async create ( req, res, next ) {
 
@@ -22,7 +28,11 @@ module.exports = {
 
     },
     async delete ( req, res, next) {
-        
+        try {
+            
+        } catch (error) {
+            next(error);
+        }
     },
     async update ( req, res, next) {
         try {
