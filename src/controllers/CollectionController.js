@@ -12,20 +12,6 @@ module.exports = {
             next(error);
         }
     },
-    async create ( req, res, next ) {
-
-        try {
-            
-            const { name, publishing_company} = req.body;
-
-            await knex('collection').insert({ name, publishing_company });
-
-            return res.status(201).send();
-
-        } catch (error) {
-            next(error);
-        }
-    },
     async delete ( req, res, next) {
         try {
             

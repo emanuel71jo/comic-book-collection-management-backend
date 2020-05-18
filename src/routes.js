@@ -13,7 +13,7 @@ router
     .get("/comic", ComicController.index)
     .post("/comic", ComicController.create)
     .delete("/comic/:id", ComicController.delete)
-    .put("/comic", ComicController.update)
+    .put("/comic/:id", ComicController.update)
 
     .get("/user", UserController.index)
     .post("/user", UserController.create)
@@ -23,7 +23,6 @@ router
     .get("/collection", CollectionController.index)
     .delete("/collection/:id", CollectionController.delete)
     .put("/collection/:id", CollectionController.update)
-    .post('/collection', CollectionController.create)
 
     .get("/peaple", PersonController.index)
     .delete("/person", PersonController.delete)
