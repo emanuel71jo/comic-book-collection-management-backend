@@ -5,7 +5,8 @@ exports.up = function(knex) {
         table.decimal('price').notNullable();
         table.text('front_image');
         table.boolean('status').defaultTo(true);
-        table.date('purchase_date').notNullable();
+        table.integer('month').notNullable();
+        table.integer('year').notNullable();
         table.text('title').notNullable();
         table.integer('collection_id').defaultTo(null);
         
