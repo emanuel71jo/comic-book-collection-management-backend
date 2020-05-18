@@ -13,10 +13,20 @@ module.exports = {
             next(error);
         }
     },
-    async create ( req, res ) {
-        return res.json({
-            message: "creted a new user"
-        });
+    async create ( req, res, next ) {
+        try {
+            
+            const { cpf, name, password, permission } = req.body;
+            
+            await knex('person').insert({ cpf, name, type_person: 1});
+            
+            await knex('user').insert({user_cpf: cpf, password, permission});
+
+            return res.send();
+
+        } catch (error) {
+            next(error);
+        }
     },
     async delete ( req, res ) {
         return res.json({
