@@ -13,26 +13,20 @@ router
     .get("/comic", ComicController.index)
     .post("/comic", ComicController.create)
     .delete("/comic/:id", ComicController.delete)
-    .put("/comic/:id", ComicController.update)
 
     .get("/user", UserController.index)
     .post("/user", UserController.create)
     .delete("/user/:cpf", UserController.delete)
-    .put("/user", UserController.update)
 
     .get("/collection", CollectionController.index)
     .delete("/collection/:id", CollectionController.delete)
-    .put("/collection/:id", CollectionController.update)
 
     .get("/peaple", PersonController.index)
     .delete("/person", PersonController.delete)
-    .put("/person", PersonController.update)
 
     .get("/loan", LoanController.index)
     .post("/loan", LoanController.create)
-    .put("/loan", LoanController.update)
 
     .get("/invoice", InvoiceController.index)
-    .put("/invoice", InvoiceController.update)
 
 module.exports = router;

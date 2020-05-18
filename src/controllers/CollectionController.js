@@ -27,20 +27,5 @@ module.exports = {
             next(error);
         }
     },
-    async update ( req, res, next) {
-        try {
 
-            const { name, publishing_company} = req.body;
-            const { id } = req.params;
-
-            await knex('collection')
-                .update({ name, publishing_company})
-                .where({ id });
-
-            return res.send();
-
-        } catch (error) {
-            next(error);
-        }
-    }
 }

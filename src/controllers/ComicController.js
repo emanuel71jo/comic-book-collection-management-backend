@@ -98,11 +98,4 @@ module.exports = {
             next(error);
         }
     },
-    async update(req, res, next) {
-        try {
-            
-        } catch (error) {
-            next(error);
-        }
-    }
 }

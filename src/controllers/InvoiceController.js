@@ -24,10 +24,4 @@ module.exports = {
             next(error);
         }
     },
-
-    async update ( req, res ) {
-        return res.json({
-            message: "updated a invoice"
-        })
-    }
 }
