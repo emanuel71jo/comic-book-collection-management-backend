@@ -5,7 +5,23 @@ module.exports = {
     async index(req, res) {
         try {
 
-            const results = await knex("comic");
+            const {
+                title = null,
+                collection_id = null,
+                status = null
+            } = req.query;
+
+            const query = knex('comic');
+
+            if(title){
+                query.where("title", title);
+            }else if(collection_id){
+                query.where("collection_id", collection_id);
+            }else if(status){
+                query.where("status", status);
+            }
+
+            const results = await query;
 
             return res.json(results);
         } catch (error) {
