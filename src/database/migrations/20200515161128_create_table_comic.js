@@ -15,5 +15,5 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-    return knex.schema.createTable('comic');
+    return knex.schema.dropTable('comic');
 };
