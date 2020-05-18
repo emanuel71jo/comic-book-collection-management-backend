@@ -17,7 +17,7 @@ router
 
     .get("/user", UserController.index)
     .post("/user", UserController.create)
-    .delete("/user", UserController.delete)
+    .delete("/user/:cpf", UserController.delete)
     .put("/user", UserController.update)
 
     .get("/collection", CollectionController.index)

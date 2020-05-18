@@ -28,10 +28,17 @@ module.exports = {
             next(error);
         }
     },
-    async delete ( req, res ) {
-        return res.json({
-            message: "removed one user"
-        });
+    async delete ( req, res, next ) {
+        try {
+            const { cpf } = req.params;
+
+            await knex('person').where({ cpf }).del();
+
+            return res.send();
+
+        } catch (error) {
+            next(error);
+        }
     },
     async update ( req, res ) {
         return res.json({

@@ -5,7 +5,7 @@ exports.up = function(knex) {
         table.text('password').notNullable();
         table.boolean('permission').notNullable();
 
-        table.foreign('user_cpf').references('cpf').inTable('person');
+        table.foreign('user_cpf').references('cpf').inTable('person').onDelete('CASCADE');
     });
 };
 
