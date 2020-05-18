@@ -34,7 +34,8 @@ module.exports = {
 
             const { price,
                     front_image = null, 
-                    purchase_date, 
+                    month,
+                    year, 
                     title, 
                     collection_id = null, 
                     name = null,
@@ -48,7 +49,8 @@ module.exports = {
                 query.insert({
                     price,
                     front_image,
-                    purchase_date,
+                    month,
+                    year,
                     title,
                     collection_id: id,
                 });
@@ -56,14 +58,16 @@ module.exports = {
                 query.insert({
                     price,
                     front_image,
-                    purchase_date,
+                    month,
+                    year,
                     title 
                 });
             }else{
                 query.insert({
                     price,
                     front_image,
-                    purchase_date,
+                    month,
+                    year,
                     title,
                     collection_id
                 });
