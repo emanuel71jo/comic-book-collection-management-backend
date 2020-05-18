@@ -85,6 +85,7 @@ module.exports = {
 
             await knex("comic")
                 .where({ id })
+                .where("status", 1)
                 .del();
             
             return res.send();
@@ -93,9 +94,11 @@ module.exports = {
             next(error);
         }
     },
-    async update(req, res) {
-        return res.json({
-            message: "updated a comic"
-        })
+    async update(req, res, next) {
+        try {
+            
+        } catch (error) {
+            next(error);
+        }
     }
 }
