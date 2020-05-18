@@ -5,7 +5,7 @@ module.exports = {
     async index ( req, res, next ) {
         try {
 
-            const results = knex('user');
+            const results = await knex('user');
 
             return res.send(results);
             
