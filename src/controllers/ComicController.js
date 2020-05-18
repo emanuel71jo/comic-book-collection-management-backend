@@ -28,11 +28,6 @@ module.exports = {
             next(error);
         }
     },
-    async store(req, res) {
-
-
-
-    },
     async create(req, res, next) {
 
         try {

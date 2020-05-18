@@ -11,7 +11,6 @@ const InvoiceController = require('./controllers/InvoiceController');
 
 router
     .get("/comic", ComicController.index)
-    .get("/comic/options", ComicController.store)
     .post("/comic", ComicController.create)
     .delete("/comic", ComicController.delete)
     .put("/comic", ComicController.update)
