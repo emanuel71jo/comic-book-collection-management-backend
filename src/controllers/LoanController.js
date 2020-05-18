@@ -5,7 +5,18 @@ module.exports = {
     async index ( req, res, next ) {
         try {
 
-            const results = await knex('loan');
+            const { filter } = req.query;
+
+            const query = knex('loan');
+
+            if(filter === 'open'){
+                query.whereNull("date_devolucion");
+            }
+            if(filter === 'closed'){
+                query.whereNotNull("date_devolucion");
+            }
+
+            const results = await query;
 
             return res.send(results);
 
