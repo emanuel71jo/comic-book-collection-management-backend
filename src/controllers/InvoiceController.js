@@ -1,15 +1,30 @@
 
+const knex = require("../database/connection")
+
 module.exports = {
-    async index ( req, res ) {
-        return res.json({
-            message: "list all of the invoice"
-        })
+    async index ( req, res, next ) {
+        try {
+
+            const { month = null, year = null } = req.query;
+
+            const query = knex('comic').select('price').select('month').select('year');
+
+            if(month){
+                query.where('month', month);
+            }
+            if(year){
+                query.where('year', year);
+            }
+            
+            const results = await query;
+
+            res.send(results);
+
+        } catch (error) {
+            next(error);
+        }
     },
-    async store ( req, res ) {
-        return res.json({
-            message: "list one of options, month or year"
-        })
-    },
+
     async update ( req, res ) {
         return res.json({
             message: "updated a invoice"

@@ -35,7 +35,6 @@ router
     .put("/loan", LoanController.update)
 
     .get("/invoice", InvoiceController.index)
-    .get("/invoice/options", InvoiceController.store)
     .put("/invoice", InvoiceController.update)
 
 module.exports = router;
