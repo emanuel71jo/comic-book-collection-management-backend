@@ -29,9 +29,7 @@ router
     .put("/person", PersonController.update)
 
     .get("/loan", LoanController.index)
-    .get("/loan/options", LoanController.store)
     .post("/loan", LoanController.create)
-    .delete("/loan", LoanController.delete)
     .put("/loan", LoanController.update)
 
     .get("/invoice", InvoiceController.index)
