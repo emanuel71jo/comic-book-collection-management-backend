@@ -79,10 +79,19 @@ module.exports = {
         }
 
     },
-    async delete(req, res) {
-        return res.json({
-            message: "removed one of the comic"
-        });
+    async delete(req, res, next) {
+        try {
+            const { id } = req.params;
+
+            await knex("comic")
+                .where({ id })
+                .del();
+            
+            return res.send();
+
+        } catch (error) {
+            next(error);
+        }
     },
     async update(req, res) {
         return res.json({

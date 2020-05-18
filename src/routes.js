@@ -12,7 +12,7 @@ const InvoiceController = require('./controllers/InvoiceController');
 router
     .get("/comic", ComicController.index)
     .post("/comic", ComicController.create)
-    .delete("/comic", ComicController.delete)
+    .delete("/comic/:id", ComicController.delete)
     .put("/comic", ComicController.update)
 
     .get("/user", UserController.index)
