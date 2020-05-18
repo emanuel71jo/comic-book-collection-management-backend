@@ -1,9 +1,17 @@
 
+const knex = require('../database/connection');
+
 module.exports = {
-    async index ( req, res ) {
-        return res.json({
-            message: "list all users"
-        })
+    async index ( req, res, next ) {
+        try {
+
+            const results = knex('user');
+
+            return res.send(results);
+            
+        } catch (error) {
+            next(error);
+        }
     },
     async create ( req, res ) {
         return res.json({
