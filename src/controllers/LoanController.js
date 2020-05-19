@@ -41,4 +41,25 @@ module.exports = {
             next(error);
         }
     },
+    async update ( req, res, next ) {
+        try {
+            
+            const { comic_id, date_loan } = req.body;
+
+            const today = new Date();
+            const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+            const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+            const date_devolucion = date + ' ' + time;
+
+            await knex('loan')
+                .update("date_devolucion", date_devolucion)
+                .where("comic_id", comic_id)
+                .where("date_loan", date_loan);
+
+            return res.send();
+            
+        } catch (error) {
+            next(error);
+        }
+    }
 }

@@ -26,6 +26,7 @@ router
 
     .get("/loan", LoanController.index)
     .post("/loan", LoanController.create)
+    .put("/loan", LoanController.update)
 
     .get("/invoice", InvoiceController.index)
 
