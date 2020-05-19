@@ -41,6 +41,21 @@ module.exports = {
             next(error);
         }
     },
+    async delete ( req, res, next ) {
+        try {
+            const { comic_id, date_loan } = req.body;
+
+            await knex('loan')
+                .where('comic_id', comic_id)
+                .where('date_loan', date_loan)
+                .del();
+
+            return res.send();
+
+        } catch (error) {
+            next(error);
+        }
+    },
     async update ( req, res, next ) {
         try {
             
