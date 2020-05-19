@@ -16,11 +16,4 @@ module.exports = {
     },
     useNullAsDefault: true
   },
-  updatedComicUnavailableLoan: () => `
-  CREATE TRIGGER updatedcomicunavailableloan
-  BEFORE UPDATE ON loan
-  FOR EACH ROW
-  EXECUTE PROCEDURE updatedcomicunavailableloan();
-  `
-
 };
