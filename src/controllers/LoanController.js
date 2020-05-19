@@ -10,10 +10,10 @@ module.exports = {
             const query = knex('loan');
 
             if(filter === 'open'){
-                query.whereNull("date_devolucion");
+                query.whereNull("date_devolution");
             }
             if(filter === 'closed'){
-                query.whereNotNull("date_devolucion");
+                query.whereNotNull("date_devolution");
             }
 
             const results = await query;
@@ -49,10 +49,10 @@ module.exports = {
             const today = new Date();
             const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
             const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-            const date_devolucion = date + ' ' + time;
+            const date_devolution = date + ' ' + time;
 
             await knex('loan')
-                .update("date_devolucion", date_devolucion)
+                .update("date_devolution", date_devolution)
                 .where("comic_id", comic_id)
                 .where("date_loan", date_loan);
 

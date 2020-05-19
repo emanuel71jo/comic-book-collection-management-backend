@@ -2,7 +2,7 @@
 exports.up = function(knex) {
     return knex.schema.createTable('loan', function(table) {
         table.date('date_loan').primary().defaultTo(knex.fn.now());
-        table.date('date_devolucion');
+        table.date('date_devolution');
         table.integer('comic_id').primary();
         table.text('user_cpf').notNullable();
         table.text('person_cpf').notNullable();
