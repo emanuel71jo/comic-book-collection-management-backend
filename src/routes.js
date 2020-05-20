@@ -8,6 +8,7 @@ const PersonController = require('./controllers/PersonController');
 const LoanController = require('./controllers/LoanController');
 const InvoiceController = require('./controllers/InvoiceController');
 const ReadingController = require('./controllers/ReadingController');
+const AutenticationController = require('./controllers/AutenticationController')
 
 
 router
@@ -36,6 +37,9 @@ router
     .post("/reading", ReadingController.create)
     .delete("/reading", ReadingController.delete)
     .put("/reading", ReadingController.update)
+
+    .get("/autentication", AutenticationController.autentication)
+    .post("/register", AutenticationController.register)
 
 
 module.exports = router;

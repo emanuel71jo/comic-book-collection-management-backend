@@ -1,5 +1,6 @@
 
 const knex = require('../database/connection');
+const bcrypt = require('bcrypt');
 
 module.exports = {
     async index ( req, res, next ) {
@@ -17,10 +18,12 @@ module.exports = {
         try {
             
             const { cpf, name, password, permission } = req.body;
+
+            
+            const hash_password = await bcrypt.hash(password, 10);
             
             await knex('person').insert({ cpf, name, type_person: 1});
-            
-            await knex('user').insert({user_cpf: cpf, password, permission});
+            await knex('user').insert({user_cpf: cpf, hash_password, permission});
 
             return res.send();
 
