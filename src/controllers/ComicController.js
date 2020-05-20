@@ -2,7 +2,7 @@
 const knex = require('../database/connection');
 
 module.exports = {
-    async index(req, res) {
+    async index( req, res, next ) {
         try {
 
             const {
@@ -28,7 +28,7 @@ module.exports = {
             next(error);
         }
     },
-    async create(req, res, next) {
+    async create( req, res, next) {
 
         try {
 
@@ -83,7 +83,7 @@ module.exports = {
         }
 
     },
-    async delete(req, res, next) {
+    async delete( req, res, next ) {
         try {
             const { id } = req.params;
 
