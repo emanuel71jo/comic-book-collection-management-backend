@@ -31,8 +31,9 @@ module.exports = {
 
             const auth = await bcrypt.compare(password, user[0].hash_password);
 
+
             if(auth){
-                const token = jwt.sign({ cpf }, '12345', { expiresIn: '1h'});
+                const token = jwt.sign( user[0], '12345', { expiresIn: '1h'});
                 return res.send({token});
             }
             return res.status(401).send({ error: 'Falha na autenticação'});
