@@ -3,7 +3,7 @@ exports.up = function(knex) {
     return knex.schema.createTable('comic', function(table) {
         table.increments('id');
         table.decimal('price').notNullable();
-        table.text('front_image');
+        table.text('file');
         table.boolean('status').defaultTo(true);
         table.integer('month').notNullable();
         table.integer('year').notNullable();

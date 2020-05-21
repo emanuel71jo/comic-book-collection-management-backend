@@ -8,7 +8,7 @@ module.exports = {
             const {
                 title = null,
                 collection_id = null,
-                status = null
+                status = null,
             } = req.query;
 
             const query = knex('comic');
@@ -33,22 +33,23 @@ module.exports = {
         try {
 
             const { price,
-                    front_image = null, 
                     month,
                     year, 
                     title, 
                     collection_id = null, 
                     name = null,
-                    publishing_company = null
+                    publishing_company = null,
                 } = req.body;
 
+            const file = req.file.path;
+            
             const query = knex('comic');
 
             if (!collection_id && name && publishing_company) {
                 const [ id ] = await knex('collection').insert({ name, publishing_company });
                 query.insert({
                     price,
-                    front_image,
+                    file,
                     month,
                     year,
                     title,
@@ -57,7 +58,7 @@ module.exports = {
             }else if(!collection_id){
                 query.insert({
                     price,
-                    front_image,
+                    file,
                     month,
                     year,
                     title 
@@ -65,7 +66,7 @@ module.exports = {
             }else{
                 query.insert({
                     price,
-                    front_image,
+                    file,
                     month,
                     year,
                     title,
@@ -74,8 +75,6 @@ module.exports = {
             }
 
             const results = await query;
-
-
 
             return res.status(201).send(results);
         } catch (error) {

@@ -1,35 +1,22 @@
 const multer = require("multer");
-const path = require("path");
 
-const storageTypes = {
-    local: multer.diskStorage({
-      destination: (req, file, cb) => {
-        cb(null, path.resolve(__dirname, "..", "..", "tmp", "uploads"));
-      },
-      filename: (req, file, cb) => {
-        cb(null, new Date().toISOString() + file.originalname);
-      }
-    }),
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, './uploads/');
+    },
+    filename: (req, file, cb) => {
+        cb(null, new Date().toISOString()+ '-' + file.originalname);
+    }
+});
+
+const fileFilter = (req, file, cb) => {
+    const isAccepted = ['image/png', 'image/jpg', 'image/jpeg'].find( formatoAceito => formatoAceito == file.mimetype );
+
+    if(isAccepted){
+        cb(null, true);
+    }
+
+    cb(null, new Error("Invalid format"));
 };
   
-module.exports = {
-    dest: path.resolve(__dirname, "..", "..", "tmp", "uploads"),
-    storage: storageTypes.local,
-    limits: {
-        fileSize: 2 * 1024 * 1024
-    },
-    fileFilter: (req, file, cb) => {
-        const allowedMimes = [
-                                "image/jpeg",
-                                "image/pjpeg",
-                                "image/png",
-                                "image/gif"
-                                ];
-
-        if (allowedMimes.includes(file.mimetype)) {
-            cb(null, true);
-        }
-        
-        cb(new Error("Invalid file type."));
-    }
-};
+module.exports = (multer({ storage, fileFilter }));
