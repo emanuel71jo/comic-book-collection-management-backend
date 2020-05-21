@@ -3,7 +3,7 @@ exports.up = function(knex) {
     return knex.schema.createTable('reading', function(table) {
         table.integer('comic_id').primary();
         table.text('user_cpf').primary();
-        table.date('reading_date').defaultTo(knex.fn.now());
+        table.date('reading_date').defaultTo(knex.fn.now()).primary();
         table.text('evaluation');
 
         table.foreign('comic_id').references('id').inTable('comic');
