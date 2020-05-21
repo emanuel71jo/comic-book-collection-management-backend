@@ -16,7 +16,7 @@ const fileFilter = (req, file, cb) => {
         cb(null, true);
     }
 
-    cb(null, new Error("Invalid format"));
+    cb(null, false);
 };
   
 module.exports = (multer({ storage, fileFilter }));
