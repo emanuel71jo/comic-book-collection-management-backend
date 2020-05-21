@@ -8,11 +8,12 @@ const PersonController = require('./controllers/PersonController');
 const LoanController = require('./controllers/LoanController');
 const InvoiceController = require('./controllers/InvoiceController');
 const ReadingController = require('./controllers/ReadingController');
-const AutenticationController = require('./controllers/AutenticationController')
+const AutenticationController = require('./controllers/AutenticationController');
 
 const AutenticationMiddleware = require('./middleware/autentication');
 const UserMiddleware = require('./middleware/user');
 const AdminMiddleware = require('./middleware/admin');
+const MulterMiddleware = require('./middleware/multer');
 
 
 router
