@@ -9,13 +9,27 @@ module.exports = {
 
             const { cpf, name, password } = req.body;
 
+            const consult = await knex('user').count();
+            let result;
+
+            if(consult[0]['count(*)'] !== 0){
+                result = {
+                    message: 'Impossible create a user because has already exists users in database'
+                }
+                return res.status(401).send(result);
+            }
             
             const hash_password = await bcrypt.hash(password, 10);
             
             await knex('person').insert({ cpf, name, type_person: 1});
             await knex('user').insert({user_cpf: cpf, hash_password, permission: 1});
 
-            return res.send();
+            result = {
+                message: 'User registered with success',
+                cpf: cpf
+            };
+
+            return res.status(201).send(result);
             
         } catch (error) {
             next(error);
@@ -34,9 +48,15 @@ module.exports = {
 
             if(auth){
                 const token = jwt.sign( user[0], '12345', { expiresIn: '1h'});
-                return res.send({token});
+
+                const result = {
+                    cpf,
+                    token
+                };
+
+                return res.send(result);
             }
-            return res.status(401).send({ error: 'Falha na autenticação'});
+            return res.status(401).send({ error: 'Unauthorized'});
             
         } catch (error) {
             next(error);
