@@ -6,7 +6,20 @@ module.exports = {
     async index ( req, res, next ) {
         try {
 
-            const results = await knex('user');
+            const users = await knex('user')
+                .join('person', 'user.user_cpf', '=', 'person.cpf')
+                .select('person.cpf', 'user.permission', 'person.name');
+
+            const results = {
+                lenght: users.length,
+                users: users.map((user) => {
+                    return {
+                        name: user.name,
+                        cpf: user.cpf,
+                        permission: user.permission
+                    }
+                }),
+            }
 
             return res.send(results);
             
@@ -25,7 +38,11 @@ module.exports = {
             await knex('person').insert({ cpf, name, type_person: 1});
             await knex('user').insert({user_cpf: cpf, hash_password, permission});
 
-            return res.send();
+            const results = {
+                message: 'User created with success'
+            }
+
+            return res.status(201).send(results);
 
         } catch (error) {
             next(error);
@@ -37,7 +54,11 @@ module.exports = {
 
             await knex('person').where({ cpf }).del();
 
-            return res.send();
+            const results = {
+                message: 'User removed with success'
+            }
+
+            return res.send(results);
 
         } catch (error) {
             next(error);
