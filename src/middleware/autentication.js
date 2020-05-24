@@ -12,6 +12,6 @@ module.exports = ( req, res, next ) => {
         next();
 
     } catch (error) {
-        return res.status(401).send({ error: 'Falha na autenticação'});
+        return res.status(403).send({ error: 'Forbidden'});
     }
 }
