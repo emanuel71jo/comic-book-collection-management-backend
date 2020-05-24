@@ -26,7 +26,7 @@ module.exports = {
 
             result = {
                 message: 'User registered with success',
-                cpf: cpf
+                cpf
             };
 
             return res.status(201).send(result);
@@ -51,6 +51,7 @@ module.exports = {
 
                 const result = {
                     cpf,
+                    permission: user[0].permission,
                     token
                 };
 
