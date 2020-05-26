@@ -51,10 +51,45 @@ module.exports = {
     async delete ( req, res, next ) {
         try {
             const { cpf } = req.params;
+            let results = {};
+
+            const user = await knex('user').where('user_cpf', cpf);
+
+            if(user.length === 0){
+                results = {
+                    message: 'User not found',
+                };
+
+                return res.status(202).send(results);
+            }
+
+            const reading_user = await knex('reading')
+                .where('user_cpf', cpf)
+                .whereNull('evaluation');
+
+            if(reading_user.length !== 0){
+                results = {
+                    message: 'Not permission for remove because this user is reading a comic',
+                }
+
+                return res.status(202).send(results);
+            }
+
+            const loans_user = await knex('loan')
+                .where('user_cpf', cpf)
+                .whereNull('date_devolution');
+
+            if(loans_user.length !== 0){
+                results = {
+                    message: 'Not permission for remove because this user has any loan pending'
+                };
+
+                return res.status(202).send(results);
+            }
 
             await knex('person').where({ cpf }).del();
 
-            const results = {
+            results = {
                 message: 'User removed with success'
             }
 
