@@ -5,7 +5,17 @@ module.exports = {
     async index ( req, res, next ) {
         try {
             
-            const results = await knex('person');
+            const people = await knex('person').where('type_person', 0);
+
+            const results = {
+                lenght: people.length,
+                people: people.map((person) => {
+                    return {
+                        name: person.name,
+                        cpf: person.cpf,
+                    }
+                }),
+            }
 
             return res.send(results);
 
