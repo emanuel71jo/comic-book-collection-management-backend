@@ -9,7 +9,7 @@ const AutenticationMiddleware = require('../middleware/autentication');
 router
     .get("/user", UserController.index)
     .post("/user", AutenticationMiddleware, AdminMiddleware, UserController.create)
-    .delete("/user/:cpf", UserController.delete);
+    .delete("/user/:cpf", AutenticationMiddleware, AdminMiddleware, UserController.delete);
  
 
 module.exports = router;
