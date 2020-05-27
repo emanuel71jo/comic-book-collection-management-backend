@@ -39,7 +39,7 @@ npm start
 
 * Website: emanuel71jo.github.io
 * Github: [@emanuel71jo](https://github.com/emanuel71jo)
-* LinkedIn: [@João Emanuel](https://linkedin.com/in/João Emanuel)
+* LinkedIn: [@João Emanuel](https://linkedin.com/in/joão-emanuel-b02480160)
 
 ## Show your support
 
