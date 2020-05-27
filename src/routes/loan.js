@@ -3,10 +3,13 @@ const router = express();
 
 const LoanController = require('../controllers/LoanController');
 
+const AdminMiddleware = require('../middleware/admin');
+
+
 router
-    .get("/loan", LoanController.index)
-    .post("/loan", LoanController.create)
-    .delete("/loan", LoanController.delete)
-    .put("/loan", LoanController.update);
+    .get("/loan", AdminMiddleware, LoanController.index)
+    .post("/loan", AdminMiddleware, LoanController.create)
+    .delete("/loan", AdminMiddleware, LoanController.delete)
+    .put("/loan", AdminMiddleware, LoanController.update);
 
 module.exports = router;
