@@ -3,8 +3,18 @@ const knex = require('../database/connection');
 module.exports = {
     async index ( req, res, next ) {
         try {
+
+            const { filter } = req.query;
             
-            const results = await knex('reading');
+            const query = knex('reading');
+
+            if(filter === 'reading'){
+                query.whereNull('evaluation');
+            }else if(filter === 'finished'){
+                query.whereNotNull('evaluation');
+            }
+
+            const results = await query;
 
             return res.send(results);
 
