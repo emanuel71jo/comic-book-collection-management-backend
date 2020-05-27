@@ -6,7 +6,7 @@ const AutenticationMiddleware = require('../middleware/autentication');
 
 
 router
-    .get("/collection", AutenticationMiddleware, CollectionController.index)
+    .get("/collection", CollectionController.index)
     .delete("/collection/:id", CollectionController.delete);
 
 module.exports = router;

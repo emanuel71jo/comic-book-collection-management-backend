@@ -4,8 +4,19 @@ module.exports = {
     async index ( req, res, next ) {
         try {
 
-            const collections = await knex('collection');
-            const comics = await knex('comic');
+            const { id = null } = req.query;
+
+            const query_collections = knex('collection');
+            const query_comics = knex('comic');
+
+            if(id){
+                query_collections.where('id', id);
+                query_comics.where('collection_id', id);
+            }
+
+            const collections = await query_collections;
+            const comics = await query_comics;
+
 
             const results = {
                 length: collections.length,
