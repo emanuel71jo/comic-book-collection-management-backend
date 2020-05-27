@@ -63,8 +63,12 @@ module.exports = {
                 .where('comic_id', comic_id)
                 .where('user_cpf', user_cpf)
                 .del();
+            
+            const results = {
+                message: 'Reading removed with success'
+            }
 
-            return res.send();
+            return res.send(results);
 
         } catch (error) {
             next(error);
