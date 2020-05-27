@@ -6,7 +6,7 @@ const UserController = require('../controllers/UserController');
 const AdminMiddleware = require('../middleware/admin');
 
 router
-    .get("/user", UserController.index)
+    .get("/user", AdminMiddleware, UserController.index)
     .post("/user", AdminMiddleware, UserController.create)
     .delete("/user/:cpf", AdminMiddleware, UserController.delete);
  
