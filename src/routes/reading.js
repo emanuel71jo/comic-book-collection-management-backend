@@ -3,10 +3,12 @@ const router = express();
 
 const ReadingController = require('../controllers/ReadingController');
 
+const UserMiddleware = require('../middleware/user');
+
 router
     .get("/reading", ReadingController.index)
-    .post("/reading", ReadingController.create)
-    .delete("/reading", ReadingController.delete)
-    .put("/reading", ReadingController.update);
+    .post("/reading", UserMiddleware, ReadingController.create)
+    .delete("/reading", UserMiddleware, ReadingController.delete)
+    .put("/reading", UserMiddleware, ReadingController.update);
 
 module.exports = router;
