@@ -80,7 +80,11 @@ module.exports = {
                 .where('user_cpf', user_cpf)
                 .where('comic_id', comic_id);
 
-            return res.send();
+            const results = {
+                message: 'Reading end with success'
+            }
+
+            return res.send(results);
 
         } catch (error) {
             next(error);
