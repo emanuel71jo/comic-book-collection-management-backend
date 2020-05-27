@@ -4,12 +4,11 @@ const router = express();
 
 const UserController = require('../controllers/UserController');
 const AdminMiddleware = require('../middleware/admin');
-const AutenticationMiddleware = require('../middleware/autentication');
 
 router
-    .get("/user", AutenticationMiddleware, UserController.index)
-    .post("/user", AutenticationMiddleware, AdminMiddleware, UserController.create)
-    .delete("/user/:cpf", AutenticationMiddleware, AdminMiddleware, UserController.delete);
+    .get("/user", UserController.index)
+    .post("/user", AdminMiddleware, UserController.create)
+    .delete("/user/:cpf", AdminMiddleware, UserController.delete);
  
 
 module.exports = router;

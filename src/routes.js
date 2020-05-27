@@ -10,13 +10,18 @@ const routerInvoice = require('./routes/invoice');
 const routerReading = require('./routes/reading');
 const routerAutentication = require('./routes/autentication');
 
-router.use(routerComic);
+const AuthMiddleware = require('./middleware/autentication');
+
+router.use(routerAutentication);
+
+router.use(AuthMiddleware);
+
 router.use(routerUser);
 router.use(routerCollection);
 router.use(routerPerson);
 router.use(routerLoan);
 router.use(routerInvoice);
 router.use(routerReading);
-router.use(routerAutentication);
+router.use(routerComic);
 
 module.exports = router;
