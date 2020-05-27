@@ -18,13 +18,37 @@ module.exports = {
             
             const { comic_id, user_cpf } = req.body;
 
+            let results;
+
+            const comic = await knex('comic').where('id', comic_id);
+
+            if(comic.length === 0){
+                results = {
+                    message: 'Comic not found'
+                }
+
+                return res.status(202).send(results);
+            }
+
+            if(!comic[0].status){
+                results = {
+                    message: 'Comic not available'
+                }
+
+                return res.status(202).send(results);
+            }
+
             await knex('reading')
                 .insert({
                     comic_id,
                     user_cpf
                 });
+            
+            results = {
+                message: 'Reading initial with success'
+            }
 
-            return res.send();
+            return res.send(results);
 
         } catch (error) {
             next(error);

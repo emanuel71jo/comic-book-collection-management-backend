@@ -6,7 +6,7 @@ const AdminMiddleware = require('../middleware/admin');
 const AutenticationMiddleware = require('../middleware/autentication'); 
 
 router
-    .get("/people", AutenticationMiddleware, AdminMiddleware, PersonController.index)
+    .get("/people",  PersonController.index)
     .delete("/person", AutenticationMiddleware, AdminMiddleware, PersonController.delete);
 
 module.exports = router;
